@@ -10,6 +10,5 @@ features:
   details: 江畔何人初见月，江月何年初照人。
 - title: 
   details: -张若虚
-
 footer: Copyright © 2019-present cjhyy
 ---
