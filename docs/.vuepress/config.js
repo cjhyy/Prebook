@@ -46,6 +46,50 @@ module.exports = {
                 ]
             },
             { text: 'Github', link: 'https://github.com/cjhyy' },
+        ],
+        sidebar: [{
+                title: 'Html',
+                children: [
+                    '/Html/Html简介',
+                    '/Html/Html常用标签',
+                    '/Html/Html主体框架',
+                    '/Html/Form表单提交',
+                    '/Html/Canvas',
+                    '/Html/SVG',
+
+                ]
+            },
+            {
+                title: 'CSS',
+                children: [
+                    '/CSS/',
+                ]
+            },
+            {
+                title: '微信小程序',
+                children: [
+                    '/wechat/',
+                    '/wechat/小程序checkbox样式的修改',
+                    '/wechat/小程序input原有样式改进',
+                    '/wechat/小程序picker组件',
+                    '/wechat/小程序setData',
+                    '/wechat/小程序中checkbox问题',
+                    '/wechat/小程序中多个不同时间倒计时实现',
+                    '/wechat/小程序中的页面跳转',
+                    '/wechat/小程序中的页面间数据传递',
+                    '/wechat/小程序列表排序',
+                    '/wechat/小程序回到顶部',
+                    '/wechat/小程序微信自带卡劵功能',
+                    '/wechat/小程序通知滚动小提示',
+                    '/wechat/小程序点击样式切换',
+                ]
+            },
+            {
+                title: '',
+                children: [
+
+                ]
+            }
         ]
 
 
