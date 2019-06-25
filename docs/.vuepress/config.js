@@ -13,6 +13,7 @@ module.exports = {
         lastUpdated: '最后更新时间',
         // 2.设置true，开启最后更新时间
         lastUpdated: true,
+        sidebarDepth: 2,
         nav: [
             { text: '前端', link: '/' },
             {
@@ -47,7 +48,19 @@ module.exports = {
             },
             { text: 'Github', link: 'https://github.com/cjhyy' },
         ],
-        sidebar: [{
+        sidebar: [  {
+            title: '前言',
+            children: [
+             '/main/'
+            ]
+        }, {
+            title: 'Javascript',
+            children: [
+             '/JavaScript/',
+             '/JavaScript/变量和类型'
+            ]
+        },
+        {
                 title: 'Html',
                 children: [
                     '/Html/Html简介',
