@@ -4,7 +4,7 @@ lang: zh-CN
 heroText: cjhyy的前端总结
 heroImage: /logo.jpg
 actionText: 开始
-actionLink: /wechat/
+actionLink: /Html/Html简介
 features:
 - title: 
   details: 江畔何人初见月，江月何年初照人。

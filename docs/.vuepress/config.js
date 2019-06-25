@@ -51,8 +51,8 @@ module.exports = {
                 title: 'Html',
                 children: [
                     '/Html/Html简介',
-                    '/Html/Html常用标签',
                     '/Html/Html主体框架',
+                    '/Html/Html常用标签',
                     '/Html/Form表单提交',
                     '/Html/Canvas',
                     '/Html/SVG',
