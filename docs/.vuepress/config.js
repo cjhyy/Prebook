@@ -13,7 +13,6 @@ module.exports = {
         lastUpdated: '最后更新时间',
         // 2.设置true，开启最后更新时间
         lastUpdated: true,
-        sidebarDepth: 2,
         nav: [
             { text: '前端', link: '/' },
             {
@@ -48,19 +47,23 @@ module.exports = {
             },
             { text: 'Github', link: 'https://github.com/cjhyy' },
         ],
-        sidebar: [  {
-            title: '前言',
-            children: [
-             '/main/'
-            ]
-        }, {
-            title: 'Javascript',
-            children: [
-             '/JavaScript/',
-             '/JavaScript/变量和类型'
-            ]
-        },
-        {
+        sidebar: [{
+                title: '前言',
+                children: [
+                    '/main/'
+                ]
+            }, {
+                title: 'Javascript',
+                children: [
+                    '/JavaScript/',
+                    '/JavaScript/变量和类型',
+                    '/JavaScript/原型和原型链',
+                    '/JavaScript/作用域和闭包',
+                    '/JavaScript/执行机制',
+                    '/JavaScript/语法和API',
+                ]
+            },
+            {
                 title: 'Html',
                 children: [
                     '/Html/Html简介',
