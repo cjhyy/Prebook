@@ -24,8 +24,25 @@
 
 ## 5.`setInterval`需要注意的点，使用`settimeout`实现`setInterval`
 
+##### 用setTimeout实现setInterval
 
+下面我们就一起来实现这个有趣的问题
+ 思路是使用递归函数，不断地去执行setTimeout从而达到setInterval的效果，看代码
+
+```
+function mySetInterval(fn, millisec){
+  function interval(){
+    setTimeout(interval, millisec);
+    fn();
+  }
+  setTimeout(interval, millisec)
+}
+```
+
+这个`mySetInterval`函数有一个叫做`interval`的内部函数，它通过`setTimeout`来自动被调用，在`interval`中有一个闭包，调用了回调函数并通过`setTimeout`再次调用了`interval`。
 
 ## 6.`JavaScript`提供的正则表达式`API`、可以使用正则表达式（邮箱校验、`URL`解析、去重等）解决常见问题
+
+
 
 ## 7.`JavaScript`异常处理的方式，统一的异常处理方案
