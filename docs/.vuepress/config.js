@@ -66,12 +66,8 @@ module.exports = {
                 title: 'Html和Css',
                 children: [
                     '/Html/Html',
-                    '/Html/CSS'
-                    // '/Html/Html主体框架',
-                    // '/Html/Html常用标签',
-                    // '/Html/Form表单提交',
-                    // '/Html/Canvas',
-                    // '/Html/SVG',
+                    '/Html/CSS',
+                    '/Html/handWrite'       
                 ]
             },
             {
