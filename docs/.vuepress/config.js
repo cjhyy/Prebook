@@ -55,7 +55,6 @@ module.exports = {
             }, {
                 title: 'Javascript',
                 children: [
-                    '/JavaScript/',
                     '/JavaScript/变量和类型',
                     '/JavaScript/原型和原型链',
                     '/JavaScript/作用域和闭包',
@@ -64,21 +63,11 @@ module.exports = {
                 ]
             },
             {
-                title: 'Html',
+                title: 'Html和Css',
                 children: [
-                    '/Html/Html简介',
-                    '/Html/Html主体框架',
-                    '/Html/Html常用标签',
-                    '/Html/Form表单提交',
-                    '/Html/Canvas',
-                    '/Html/SVG',
-
-                ]
-            },
-            {
-                title: 'CSS',
-                children: [
-                    '/CSS/',
+                    '/Html/Html',
+                    '/Html/CSS',
+                    '/Html/handWrite'       
                 ]
             },
             {
@@ -101,7 +90,7 @@ module.exports = {
                 ]
             },
             {
-                title: '',
+                title: 'TypeScript',
                 children: [
 
                 ]
