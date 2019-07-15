@@ -43,6 +43,6 @@ function mySetInterval(fn, millisec){
 
 ## 6.`JavaScript`提供的正则表达式`API`、可以使用正则表达式（邮箱校验、`URL`解析、去重等）解决常见问题
 
-
+参考：[2019 年常用 JavaScript 正则大全](https://juejin.im/post/5d245d4151882555300feb77?utm_source=gold_browser_extension)
 
 ## 7.`JavaScript`异常处理的方式，统一的异常处理方案
