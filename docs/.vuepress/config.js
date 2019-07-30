@@ -71,6 +71,28 @@ module.exports = {
                 ]
             },
             {
+                title: '计算机基础',
+                children: [
+                    '/cs/编译原理',
+                    '/cs/设计模式',
+                    '/cs/网络协议'       
+                ]
+            },
+            {
+                title: '数据结构与算法',
+                children: [
+                     
+                ]
+            },
+            {
+                title: '运行环境',
+                children: [
+                     '/enviroment/浏览器原理',
+                     '/enviroment/浏览器API',                
+                     '/enviroment/Node'
+                    ]
+                                },
+            {
                 title: '微信小程序',
                 children: [
                     '/wechat/',
@@ -92,9 +114,21 @@ module.exports = {
             {
                 title: 'TypeScript',
                 children: [
-
+                '/TypeScript/'
                 ]
-            }
+            },
+            {
+                title: 'React',
+                children: [
+                '/React/'
+                ]
+            },
+            {
+                title: 'Vue',
+                children: [
+                '/Vue/'
+                ]
+            },
         ]
 
 
