@@ -92,7 +92,7 @@ module.exports = {
             {
                 title: 'TypeScript',
                 children: [
-
+                   '/TypeScript/'
                 ]
             }
         ]
