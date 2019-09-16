@@ -197,6 +197,20 @@ function deepClone2(obj) {
 
 ## 3.手写函数柯里化工具函数、并理解其应用场景和优势
 
+```
+
+function add(...args) {
+    return args.reduce((sums, i) => sums + i);
+}
+ 
+function carrying(fn, ...args1) {
+    return function (...args2) {
+        return fn.call(this, ...args1, ...args2);
+    }
+}
+carrying(add,1)(2);
+```
+
 
 
 ## 4.手写防抖和节流工具函数、并理解其内部原理和应用场景
