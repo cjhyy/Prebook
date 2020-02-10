@@ -197,7 +197,7 @@ function deepClone2(obj) {
 
 ## 3.手写函数柯里化工具函数、并理解其应用场景和优势
 
-```
+```js
 
 function add(...args) {
     return args.reduce((sums, i) => sums + i);
@@ -211,13 +211,72 @@ function carrying(fn, ...args1) {
 carrying(add,1)(2);
 ```
 
-
-
 ## 4.手写防抖和节流工具函数、并理解其内部原理和应用场景
 
+#### debounce（防抖）
+
+debounce（防抖），简单来说就是防止抖动。
+
+当持续触发事件时，debounce会**合并事件且不会去触发事件**，**当一定时间内没有触发再这个事件时，才真正去触发事件**。
+
+##### 1.非立即执行版
+
+非立即执行版的意思是触发事件后函数不会立即执行，而是在 n 秒后执行，如果在 n 秒内又触发了事件，则会重新计算函数执行时间。
+
+```js
+const debounce = (func, wait, ...args) => {
+  let timeout;
+  return function(){
+    const context = this;
+    if (timeout) clearTimeout(timeoout);
+    timeout = setTimeout(() => {
+      func.apply(context, ...args)
+    },wait);
+  }
+}
+
+let flag = 0; // 记录当前函数调用次数
+// 当用户滚动时被调用的函数
+function foo() {
+  flag++;
+  console.log('Number of calls: %d', flag);
+}
+ 
+// 在 debounce 中包装我们的函数，过 2 秒触发一次
+document.body.addEventListener('scroll', debounce(foo, 2000));
+```
+
+##### 2.立即执行版
+
+立即执行版的意思是触发事件后函数会立即执行，然后 n 秒内不触发事件才能继续执行函数的效果。
+
+```js
+const debounce = (func, wait, ...agrs) => {
+  let timeout;
+  return function(){
+    const context = this;
+    if (timeout) cleatTimeout(timeout);
+    let callNow = !timeout;
+    timeout = setTimeout(() => {
+      timeout = null;
+    },wait)
+    
+    if(callNow) func.apply(context,...args)
+   }
+}
+```
+
+#### throttle（节流）
 
 
 
+```js
+
+```
 
 ## 5.实现一个`sleep`函数
+
+```
+
+```
 
