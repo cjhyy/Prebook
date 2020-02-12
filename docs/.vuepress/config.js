@@ -18,7 +18,7 @@ module.exports = {
             {
                 text: '算法',
                 items: [
-                    { text: '算法与数据结构', link: 'https://github.com/cjhyy' },
+                    // { text: '算法与数据结构', link: 'https://github.com/cjhyy' },
                     { text: 'leetcode题解', link: 'https://cjhyy.github.io/myleetcode/' }
                 ]
             },
@@ -95,7 +95,7 @@ module.exports = {
             {
                 title: '微信小程序',
                 children: [
-                    '/wechat/',
+                    // '/wechat/',
                     '/wechat/小程序checkbox样式的修改',
                     '/wechat/小程序input原有样式改进',
                     '/wechat/小程序picker组件',
@@ -120,7 +120,9 @@ module.exports = {
             {
                 title: 'React',
                 children: [
-                '/React/'
+                '/React/',
+                '/React/react事件绑定',
+                '/React/react生命周期'
                 ]
             },
             {
