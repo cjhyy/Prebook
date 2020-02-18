@@ -81,7 +81,10 @@ module.exports = {
             {
                 title: '数据结构与算法',
                 children: [
-                     
+                    '/Algorithms/手动实现前端轮子',
+                    '/Algorithms/数据结构',
+                    '/Algorithms/算法',
+                    '/Algorithms/JavaScript编码能力'
                 ]
             },
             {
