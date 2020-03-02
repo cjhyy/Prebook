@@ -16,13 +16,27 @@
 
 ## 3.熟练掌握`JavaScript`提供的全局对象（例如`Date`、`Math`）、全局函数（例如`decodeURI`、`isNaN`）、全局属性（例如`Infinity`、`undefined`）
 
+new Date()
 
+Math.floor()
+
+isNaN()
+
+decodeURI()不知道什么意思
+
+Infinity()
+
+undefined
 
 ## 4.熟练应用`map`、`reduce`、`filter` 等高阶函数解决问题
 
+map的用法
 
+reduce的用法
 
-## 5.`setInterval`需要注意的点，使用`settimeout`实现`setInterval`
+filter的用法
+
+## 5.`setInterval`需要注意的点，使用`setTimeout`实现`setInterval`
 
 ##### 用setTimeout实现setInterval
 
