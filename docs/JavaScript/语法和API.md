@@ -24,7 +24,7 @@ isNaN()
 
 decodeURI()不知道什么意思
 
-Infinity()
+Infinity 无穷大
 
 undefined
 
@@ -60,3 +60,5 @@ function mySetInterval(fn, millisec){
 参考：[2019 年常用 JavaScript 正则大全](https://juejin.im/post/5d245d4151882555300feb77?utm_source=gold_browser_extension)
 
 ## 7.`JavaScript`异常处理的方式，统一的异常处理方案
+
+[异常处理](https://blog.csdn.net/sreddouilyongxia/article/details/78188992)
