@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>作用域和闭包 | 前端</title>
+    <meta name="description" content="春江花月夜的前端仓库">
+    <link rel="icon" href="/Prebook/favicon.ico">
+    
+    <link rel="preload" href="/Prebook/assets/css/0.styles.7c675de5.css" as="style"><link rel="preload" href="/Prebook/assets/js/app.9e47b049.js" as="script"><link rel="preload" href="/Prebook/assets/js/2.7ad09ebd.js" as="script"><link rel="preload" href="/Prebook/assets/js/20.22e7e3a8.js" as="script"><link rel="prefetch" href="/Prebook/assets/js/10.b3132b99.js"><link rel="prefetch" href="/Prebook/assets/js/11.0c733b44.js"><link rel="prefetch" href="/Prebook/assets/js/12.f7b6670d.js"><link rel="prefetch" href="/Prebook/assets/js/13.decd372f.js"><link rel="prefetch" href="/Prebook/assets/js/14.ed159846.js"><link rel="prefetch" href="/Prebook/assets/js/15.b8e414eb.js"><link rel="prefetch" href="/Prebook/assets/js/16.e334efdd.js"><link rel="prefetch" href="/Prebook/assets/js/17.a62cd895.js"><link rel="prefetch" href="/Prebook/assets/js/18.b83405a7.js"><link rel="prefetch" href="/Prebook/assets/js/19.232034ad.js"><link rel="prefetch" href="/Prebook/assets/js/21.b84b9a5d.js"><link rel="prefetch" href="/Prebook/assets/js/22.ed7eb985.js"><link rel="prefetch" href="/Prebook/assets/js/23.0a852139.js"><link rel="prefetch" href="/Prebook/assets/js/24.09a05518.js"><link rel="prefetch" href="/Prebook/assets/js/25.077f0015.js"><link rel="prefetch" href="/Prebook/assets/js/26.a5e7ce69.js"><link rel="prefetch" href="/Prebook/assets/js/27.2fa36787.js"><link rel="prefetch" href="/Prebook/assets/js/28.e347c05b.js"><link rel="prefetch" href="/Prebook/assets/js/29.4dca8ecd.js"><link rel="prefetch" href="/Prebook/assets/js/3.c69347f7.js"><link rel="prefetch" href="/Prebook/assets/js/30.edf00438.js"><link rel="prefetch" href="/Prebook/assets/js/31.4a69633d.js"><link rel="prefetch" href="/Prebook/assets/js/32.9877c19d.js"><link rel="prefetch" href="/Prebook/assets/js/33.483b4a2e.js"><link rel="prefetch" href="/Prebook/assets/js/34.a048e929.js"><link rel="prefetch" href="/Prebook/assets/js/35.82ed7e12.js"><link rel="prefetch" href="/Prebook/assets/js/36.ff30a8b2.js"><link rel="prefetch" href="/Prebook/assets/js/37.f4cbcdbd.js"><link rel="prefetch" href="/Prebook/assets/js/38.3e558f36.js"><link rel="prefetch" href="/Prebook/assets/js/39.e09d3663.js"><link rel="prefetch" href="/Prebook/assets/js/4.9917bcdf.js"><link rel="prefetch" href="/Prebook/assets/js/40.9bd4b4c1.js"><link rel="prefetch" href="/Prebook/assets/js/41.a14b15fe.js"><link rel="prefetch" href="/Prebook/assets/js/42.46bf4476.js"><link rel="prefetch" href="/Prebook/assets/js/43.7e77880e.js"><link rel="prefetch" href="/Prebook/assets/js/44.d4c19b1d.js"><link rel="prefetch" href="/Prebook/assets/js/45.38638ef2.js"><link rel="prefetch" href="/Prebook/assets/js/46.30847516.js"><link rel="prefetch" href="/Prebook/assets/js/47.6161cceb.js"><link rel="prefetch" href="/Prebook/assets/js/48.ec8729b6.js"><link rel="prefetch" href="/Prebook/assets/js/49.f6faa379.js"><link rel="prefetch" href="/Prebook/assets/js/5.b715e61e.js"><link rel="prefetch" href="/Prebook/assets/js/50.529d5d55.js"><link rel="prefetch" href="/Prebook/assets/js/51.139d0744.js"><link rel="prefetch" href="/Prebook/assets/js/52.f7369209.js"><link rel="prefetch" href="/Prebook/assets/js/53.0d05c274.js"><link rel="prefetch" href="/Prebook/assets/js/54.649626e6.js"><link rel="prefetch" href="/Prebook/assets/js/55.cce172eb.js"><link rel="prefetch" href="/Prebook/assets/js/56.3e53bc0d.js"><link rel="prefetch" href="/Prebook/assets/js/57.3d57d1c2.js"><link rel="prefetch" href="/Prebook/assets/js/58.14f9495b.js"><link rel="prefetch" href="/Prebook/assets/js/6.698da9e3.js"><link rel="prefetch" href="/Prebook/assets/js/7.a990dcfa.js"><link rel="prefetch" href="/Prebook/assets/js/8.b5480430.js"><link rel="prefetch" href="/Prebook/assets/js/9.dc616334.js">
+    <link rel="stylesheet" href="/Prebook/assets/css/0.styles.7c675de5.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/Prebook/" class="home-link router-link-active"><!----> <span class="site-name">前端</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/Prebook/" class="nav-link">前端</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">算法</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://cjhyy.github.io/myleetcode/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  leetcode题解
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">学习笔记</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  数学
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  计算机
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  英语
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  日语
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  其他
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/Prebook/" class="nav-link">前端</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">算法</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://cjhyy.github.io/myleetcode/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  leetcode题解
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">学习笔记</span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  数学
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  计算机
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  英语
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  日语
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  其他
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="https://github.com/cjhyy" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>前言</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Javascript</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/Prebook/JavaScript/变量和类型.html" class="sidebar-link">变量和类型</a></li><li><a href="/Prebook/JavaScript/原型和原型链.html" class="sidebar-link">原型和原型链</a></li><li><a href="/Prebook/JavaScript/作用域和闭包.html" class="active sidebar-link">作用域和闭包</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/Prebook/JavaScript/作用域和闭包.html#_1-理解词法作用域和动态作用域" class="sidebar-link">1.理解词法作用域和动态作用域</a></li><li class="sidebar-sub-header"><a href="/Prebook/JavaScript/作用域和闭包.html#_2-理解javascript的作用域和作用域链" class="sidebar-link">2.理解JavaScript的作用域和作用域链</a></li><li class="sidebar-sub-header"><a href="/Prebook/JavaScript/作用域和闭包.html#_3-理解javascript的执行上下文栈，可以应用堆栈信息快速定位问题" class="sidebar-link">3.理解JavaScript的执行上下文栈，可以应用堆栈信息快速定位问题</a></li><li class="sidebar-sub-header"><a href="/Prebook/JavaScript/作用域和闭包.html#_4-this的原理以及几种不同使用场景的取值" class="sidebar-link">4.this的原理以及几种不同使用场景的取值</a></li><li class="sidebar-sub-header"><a href="/Prebook/JavaScript/作用域和闭包.html#_5-闭包的实现原理和作用，可以列举几个开发中闭包的实际应用" class="sidebar-link">5.闭包的实现原理和作用，可以列举几个开发中闭包的实际应用</a></li><li class="sidebar-sub-header"><a href="/Prebook/JavaScript/作用域和闭包.html#_6-理解堆栈溢出和内存泄漏的原理，如何防止" class="sidebar-link">6.理解堆栈溢出和内存泄漏的原理，如何防止</a></li><li class="sidebar-sub-header"><a href="/Prebook/JavaScript/作用域和闭包.html#_7-如何处理循环的异步操作" class="sidebar-link">7.如何处理循环的异步操作</a></li><li class="sidebar-sub-header"><a href="/Prebook/JavaScript/作用域和闭包.html#_8-理解模块化解决的实际问题，可列举几个模块化方案并理解其中原理" class="sidebar-link">8.理解模块化解决的实际问题，可列举几个模块化方案并理解其中原理</a></li></ul></li><li><a href="/Prebook/JavaScript/执行机制.html" class="sidebar-link">执行机制</a></li><li><a href="/Prebook/JavaScript/语法和API.html" class="sidebar-link">语法和API</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Html和Css</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机基础</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>数据结构与算法</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>运行环境</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>微信小程序</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>TypeScript</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>React</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="作用域和闭包"><a href="#作用域和闭包" aria-hidden="true" class="header-anchor">#</a> 作用域和闭包</h1> <h2 id="_1-理解词法作用域和动态作用域"><a href="#_1-理解词法作用域和动态作用域" aria-hidden="true" class="header-anchor">#</a> 1.理解词法作用域和动态作用域</h2> <h4 id="作用域"><a href="#作用域" aria-hidden="true" class="header-anchor">#</a> 作用域</h4> <p>作用域是指程序源代码中定义变量的区域。</p> <p>作用域规定了如何查找变量，也就是确定当前执行代码对变量的访问权限。</p> <p>JavaScript 采用词法作用域(lexical scoping)，也就是静态作用域。</p> <h4 id="静态作用域与动态作用域"><a href="#静态作用域与动态作用域" aria-hidden="true" class="header-anchor">#</a> 静态作用域与动态作用域</h4> <p>因为 JavaScript 采用的是词法作用域，函数的作用域在函数定义的时候就决定了。</p> <p>而与词法作用域相对的是动态作用域，函数的作用域是在函数调用的时候才决定的。</p> <p>让我们认真看个例子就能明白之间的区别：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var value = 1;
+
+function foo() {
+    console.log(value);
+}
+
+function bar() {
+    var value = 2;
+    foo();
+}
+
+bar();
+
+// 结果是 ???
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div></div><p>假设JavaScript采用静态作用域，让我们分析下执行过程：</p> <p>执行 foo 函数，先从 foo 函数内部查找是否有局部变量 value，如果没有，就根据书写的位置，查找上面一层的代码，也就是 value 等于 1，所以结果会打印 1。</p> <p>假设JavaScript采用动态作用域，让我们分析下执行过程：</p> <p>执行 foo 函数，依然是从 foo 函数内部查找是否有局部变量 value。如果没有，就从调用函数的作用域，也就是 bar 函数内部查找 value 变量，所以结果会打印 2。</p> <p>前面我们已经说了，JavaScript采用的是静态作用域，所以这个例子的结果是 1。</p> <h4 id="动态作用域"><a href="#动态作用域" aria-hidden="true" class="header-anchor">#</a> 动态作用域</h4> <p>也许你会好奇什么语言是动态作用域？</p> <p>bash 就是动态作用域，不信的话，把下面的脚本存成例如 scope.bash，然后进入相应的目录，用命令行执行 <code>bash ./scope.bash</code>，看看打印的值是多少。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>value=1
+function foo () {
+    echo $value;
+}
+function bar () {
+    local value=2;
+    foo;
+}
+bar
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h2 id="_2-理解javascript的作用域和作用域链"><a href="#_2-理解javascript的作用域和作用域链" aria-hidden="true" class="header-anchor">#</a> 2.理解<code>JavaScript</code>的作用域和作用域链</h2> <h3 id="_1-执行环境（execution-context）"><a href="#_1-执行环境（execution-context）" aria-hidden="true" class="header-anchor">#</a> 1.执行环境（execution context）</h3> <p>执行环境定义了变量和函数有权访问的其他数据，决定了他们各自的行为。每个执行环境都有与之对应的变量对象（variable object），保存着该环境中定义的所有变量和函数。我们无法通过代码来访问变量对象，但是解析器在处理数据时会在后台使用到它。</p> <p>执行环境有全局执行环境（也称全局环境）和函数执行环境之分。执行环境如其名是在运行和执行代码的时候才存在的，所以我们运行浏览器的时候会创建全局的执行环境，在调用函数时，会创建函数执行环境。</p> <h4 id="_1-1-全局执行环境"><a href="#_1-1-全局执行环境" aria-hidden="true" class="header-anchor">#</a> 1.1 全局执行环境</h4> <p>全局执行环境是最外围的一个执行环境，在web浏览器中，我们可以认为他是window对象，因此所有的全局变量和函数都是作为window对象的属性和方法创建的。代码载入浏览器时，全局环境被创建，关闭网页或者关闭浏览时全局环境被销毁。</p> <h4 id="_1-2-函数执行环境"><a href="#_1-2-函数执行环境" aria-hidden="true" class="header-anchor">#</a> 1.2 函数执行环境</h4> <p>每个函数都有自己的执行环境，当执行流进入一个函数时，函数的环境就被推入一个环境栈中，当函数执行完毕后，栈将其环境弹出，把控制权返回给之前的执行环境。</p> <h3 id="_2-作用域、作用域链"><a href="#_2-作用域、作用域链" aria-hidden="true" class="header-anchor">#</a> 2.作用域、作用域链</h3> <h4 id="_2-1-全局作用域（globe-scope）和局部作用域（local-scope）"><a href="#_2-1-全局作用域（globe-scope）和局部作用域（local-scope）" aria-hidden="true" class="header-anchor">#</a> 2.1 全局作用域（globe scope）和局部作用域（local scope）</h4> <p><strong>全局作用域</strong>可以在代码中的任何地方都能被访问，例如：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>1  var name1=&quot;haha&quot;;
+2 function changName(){
+3     var name2=&quot;xixi&quot;;
+4     console.log(name1); // haha
+5     console.log(name2);// xixi
+6 } 
+7 changName();
+8 console.log(name1);//haha
+9 console.log(name2);//Uncaught ReferenceError: name2 is not defined
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>其中，name1具有全局作用域，因此在第4行和第8行都会在控制台上输出 haha。name2定义在changName()函数内部，具有局部作用域，因此在第9行，解析器找不到变量name2，抛出错误。
+　　另外，在函数中声明变量时，如果省略 var 操作符，那么声明的变量就是全局变量，拥有全局作用域，但是不推荐这种做法，因为在局部作用域中很难维护定义的全局变量。</p> <p>再者，window对象的内置属性都拥有全局作用域。</p> <p><strong>局部作用域</strong>一般只在固定的代码片段内可以访问得到，例如上述代码中的name2，只有在函数内部可以访问得到。</p> <h4 id="_2-2-作用域链（scope-chain）"><a href="#_2-2-作用域链（scope-chain）" aria-hidden="true" class="header-anchor">#</a> 2.2 作用域链（scope chain）</h4> <p>全局作用域和局部作用域中变量的访问权限，其实是由作用域链决定的。</p> <p>每次进入一个新的执行环境，都会创建一个用于搜索变量和函数的作用域链。作用域链是函数被创建的作用域中<strong>对象</strong>的集合。作用域链可以保证对执行环境有权访问的所有变量和函数的有序访问。</p> <p>作用域链的最前端始终是当前执行的代码所在环境的变量对象（如果该环境是函数，则将其活动对象作为变量对象），下一个变量对象来自包含环境（包含当前还行环境的环境），下一个变量对象来自包含环境的包含环境，依次往上，直到全局执行环境的变量对象。全局执行环境的变量对象始终是作用域链中的最后一个对象。</p> <p>标识符解析是沿着作用域一级一级的向上搜索标识符的过程。搜索过程始终是从作用域的前端逐地向后回溯，直到找到标识符（找不到，就会导致错误发生）。</p> <p>例如：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code> 1 var name1 = &quot;haha&quot;;
+ 2 function changeName(){
+ 3     var name2=&quot;xixi&quot;;
+ 4     function swapName(){
+ 5         console.log(name1);//haha
+ 6         console.log(name2);//xixi
+ 7         var tempName=name2;
+ 8         name2=name1;
+ 9         name1=tempName;
+10         console.log(name1);//xixi11         console.log(name2);//haha
+12         console.log(tempName);//xixi13     }
+14     swapName();
+15     console.log(name1);//haha
+16     console.log(name2);//xixi
+17     //console.log(tempName);抛出错误：Uncaught ReferenceError: tempName is not defined
+18 }
+19 changName();
+20 console.log(name1);
+21 //console.log(name2); 抛出错误：Uncaught ReferenceError: name2 is not defined
+22 //console.log(tempName);抛出错误：Uncaught ReferenceError: tempName is not defined
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br></div></div><p>运行结果如下：</p> <p><img src="https://images2015.cnblogs.com/blog/1013598/201609/1013598-20160909220825207-770260149.gif" alt="img"></p> <p>上述代码中，一共有三个执行环境：全局环境、changeName()的局部环境和 swapName() 的局部环境。所以，</p> <p>1.函数 swapName()的作用域链包含三个对象：<strong>自己的变量对象-----&gt;changeName()局部环境的变量对象 -----&gt;全局环境的变量对象</strong>。</p> <p>2.函数changeName()的作用域包含两个对象：<strong>自己的变量对象-----&gt;全局环境的变量对象。</strong></p> <p>就上述程序中出现的变量和函数来讲（不考虑隐形变量）：</p> <p>1.swapName() 局部环境的变量对象中存放变量 tempName；</p> <p>2.changeName() 局部环境的变量对象中存放变量 name2 和 函数swapName()；</p> <p>3.全局环境的变量对象中存放变量 name1 、函数changeName();</p> <p>在swapName()的执行环境中，在执行第5句代码时，解析器沿着函数 swapName()的作用域链一级级向后回溯查找变量 name1，直到在全局环境中找到变量 name1.并输出在控制台上。同样，在执行第6句代码时，解析器沿着函数 swapName()的作用域链一级级向后回溯，在函数changeName()的变量对象中发现变量 name2.通过代码对 name1 和 name2进行交换，并输出在控制台上，根据结果我们发现，这两个变量的值确实交换了。因此我们可以得出结论，<strong>函数的局部环境可以访问函数作用域中的变量，也可以访问和操作父环境（包含环境）乃至全局环境中的变量。</strong></p> <p><strong>在</strong>changeName() 的执行环境中，执行第15行和第16行代码时，可以正确地输出  name1 和 name2 和两个变量的值（调用了函数swapName(),所以俩变量的值已相互交换），那是因为 name1 在changName()的父环境（全局环境）中， name2 在他自己的局部环境中，即 name1 和 name2 都在其作用域链上。但当执行第17行代码是发生错误 tempName is not defined。因为解析器沿着 函数changeName()的作用域链一级级的查找 变量 tempName时，并不能找到该变量的存在（变量 tempName不在其作用域链上），所以抛出错误。因此，我们可以得出结论：<strong>父环境只能访问其包含环境和自己环境中的变量和函数，不能访问其子环境中的变量和函数。</strong></p> <p>同理，在全局环境中，其变量对象中只存放变量 name1 、函数changeName();  解析器只能访问变量 name1 和函数 changeName(), 而不能访问和操作 函数 changeName() 和函数 swapName() 中定义的变量或者函数。因此，在执行第21行和第22行代码时抛出变量没有定义的错误。所以说，<strong>全局环境只能访问全局环境中的变量和函数，不能直接访问局部环境中的任何数据。</strong></p> <p>其实，我们可以把作用域链想象成这样（里面的能访问外面的，外面的不能访问里面的，图为参考）：</p> <p><img src="https://images2015.cnblogs.com/blog/1013598/201609/1013598-20160910103037879-1633973943.gif" alt="img"></p> <p>作用域链相关知识的总结：</p> <p>1.执行环境决定了变量的生命周期，以及哪部分代码可以访问其中变量</p> <p>2，执行环境有全局执行环境（全局环境）和局部执行环境之分。</p> <p>3.每次进入一个新的执行环境，都会创建一个用于搜索变量和函数的作用域链</p> <p>4.函数的局部环境可以访问函数作用域中的变量和函数，也可以访问其父环境，乃至全局环境中的变量和环境。</p> <p>5.全局环境只能访问全局环境中定义的变量和函数，不能直接访问局部环境中的任何数据。</p> <p>6.变量的执行环境有助于确定应该合适释放内存。</p> <h3 id="_3-提升（hoisting）"><a href="#_3-提升（hoisting）" aria-hidden="true" class="header-anchor">#</a> 3.提升（hoisting）</h3> <p>提升有变量提升和函数提升之分，下面我们依次介绍他们。</p> <h4 id="_3-1-变量提升（variable-hoisting）"><a href="#_3-1-变量提升（variable-hoisting）" aria-hidden="true" class="header-anchor">#</a> 3.1 变量提升（variable hoisting）</h4> <p>请看一下代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>1  var name=&quot;haha&quot;;
+2  function changeName(){
+3      console.log(name);
+4      var name=&quot;xixi&quot;;
+5  }
+6  changeName();
+7  console.log(name);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><p>大家认为第6行和第7行代码输出的结果应该是什么？好了，答案是：输出结果结果分别是 <strong>undefined</strong> 和 <strong>haha</strong>。为什么是undefined？ 按照作用域链的思路思考，输出的结果应该是 haha或者xixi啊？ （当然大家都知道 xixi是不可能的，因为解析器在解析第3行代码时，还不知道第4行中的赋值内容）。</p> <p>那我们先来分析一下代码 函数changeName() 的作用域链： 自己的变量对象 -----&gt; 全局变量对象。解析器在函数执行环境中发现变量 name，因此不会再向全局环境的变量对象中寻找。但是大家要注意的是，解析器在解析第3句代码时，还不知道变量name的值，也就是说只知道有变量name，但是不知道它具体的值（因为还没有执行第4句代码），因此输出是 undefined，第7行输出haha大家应该都理解把（作用域问题）。所以上述代码可以写成下面的形式：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>1   var name=&quot;haha&quot;;
+2   function changeName(){
+3       var name;
+4       console.log(name);
+5       name=&quot;xixi&quot;;
+6  }
+7  changeName();
+8  console.log(name);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>这个现象就是<strong>变量提升</strong>！</p> <p>变量提升，就是把变量提升到函数的顶部，需要注意的是，变量提升只是提升变量的声明，不会吧变量的值也提升上来！见上述代码，最常见的代码如下，函数example1()和函数example2()是等价的：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code> 1 function example1(){
+ 2     var a=&quot;haha&quot;;
+ 3     var b=&quot;xixi&quot;;
+ 4     var c=&quot;heihei&quot;;
+ 5 }
+ 6 
+ 7 
+ 8 function example2(){
+ 9     var a,b,c;
+10     a=&quot;haha&quot;;
+11     b=&quot;xixi&quot;;
+12     c=&quot;heihei&quot;;
+13 }
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br></div></div><h4 id="_3-2-函数提升（）"><a href="#_3-2-函数提升（）" aria-hidden="true" class="header-anchor">#</a> 3.2 函数提升（）</h4> <p>函数提升就是把函数提升到前面。</p> <p>在JavaScript中函数的创建方式有三种：函数声明（静态的，像函数example1()的形式）、函数表达式（函数字面量）、函数构造法（动态的，匿名的）。函数表达式的形式如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>1 var func1 = function(n1,n2){
+2     //function body;
+3 };
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><p>函数构造法构造函数的形式如下：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code> var func2 = new Function(&quot;para1&quot;,&quot;para2&quot;,...,&quot;function body&quot;);    
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>在这里需要说明的是：只有函数声明形式才能被提升！例如：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>//函数声明
+function myTest1(){ 
+    func(); 
+    function func(){ 
+        console.log(&quot;我可以被提升&quot;); 
+    } 
+} 
+myTest1();
+
+//函数表达式
+function myTest2(){ 
+    func(); 
+    var func = function(){ 
+        console.log(&quot;我不能被提升&quot;); 
+    } 
+} 
+myTest2();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>控制台显示结果如下：</p> <p><img src="https://images2015.cnblogs.com/blog/1013598/201609/1013598-20160911203525698-779117690.gif" alt="img"></p> <h2 id="_3-理解javascript的执行上下文栈，可以应用堆栈信息快速定位问题"><a href="#_3-理解javascript的执行上下文栈，可以应用堆栈信息快速定位问题" aria-hidden="true" class="header-anchor">#</a> 3.理解<code>JavaScript</code>的执行上下文栈，可以应用堆栈信息快速定位问题</h2> <h3 id="一、执行上下文（execution-context）"><a href="#一、执行上下文（execution-context）" aria-hidden="true" class="header-anchor">#</a> 一、执行上下文（Execution Context）</h3> <h4 id="_1-什么是执行上下文"><a href="#_1-什么是执行上下文" aria-hidden="true" class="header-anchor">#</a> 1.什么是执行上下文</h4> <p>简而言之，执行上下文就是当前 JavaScript 代码被解析和执行时所在环境的抽象概念， JavaScript 中运行任何的代码都是在执行上下文中运行</p> <h4 id="_2-执行上下文的类型"><a href="#_2-执行上下文的类型" aria-hidden="true" class="header-anchor">#</a> 2.执行上下文的类型</h4> <p>执行上下文总共有三种类型：</p> <ul><li>全局执行上下文： 这是默认的、最基础的执行上下文。不在任何函数中的代码都位于全局执行上下文中。它做了两件事：1. 创建一个全局对象，在浏览器中这个全局对象就是 window 对象。2. 将 this 指针指向这个全局对象。一个程序中只能存在一个全局执行上下文。</li> <li>函数执行上下文： 每次调用函数时，都会为该函数创建一个新的执行上下文。每个函数都拥有自己的执行上下文，但是只有在函数被调用的时候才会被创建。一个程序中可以存在任意数量的函数执行上下文。每当一个新的执行上下文被创建，它都会按照特定的顺序执行一系列步骤，具体过程将在本文后面讨论。</li> <li>Eval 函数执行上下文： 运行在 eval 函数中的代码也获得了自己的执行上下文，但由于 Javascript 开发人员不常用 eval 函数，所以在这里不再讨论。</li></ul> <h3 id="二、执行上下文的生命周期"><a href="#二、执行上下文的生命周期" aria-hidden="true" class="header-anchor">#</a> 二、执行上下文的生命周期</h3> <p>执行上下文的生命周期包括三个阶段：<strong>创建阶段→执行阶段→回收阶段</strong>，本文重点介绍创建阶段。</p> <h4 id="_1-创建阶段"><a href="#_1-创建阶段" aria-hidden="true" class="header-anchor">#</a> 1.创建阶段</h4> <p>当函数被调用，但未执行任何其内部代码之前，会做以下三件事：</p> <ul><li>创建变量对象：首先初始化函数的参数arguments，提升函数声明和变量声明。下文会详细说明。</li> <li>创建作用域链（Scope Chain）：在执行期上下文的创建阶段，作用域链是在变量对象之后创建的。作用域链本身包含变量对象。作用域链用于解析变量。当被要求解析变量时，JavaScript 始终从代码嵌套的最内层开始，如果最内层没有找到变量，就会跳转到上一层父作用域中查找，直到找到该变量。</li> <li>确定this指向：包括多种情况，下文会详细说明</li></ul> <p>在一段 JS 脚本执行之前，要先解析代码（所以说 JS 是解释执行的脚本语言），解析的时候会先创建一个全局执行上下文环境，先把代码中即将执行的变量、函数声明都拿出来。变量先暂时赋值为undefined，函数则先声明好可使用。这一步做完了，然后再开始正式执行程序。</p> <p>另外，一个函数在执行之前，也会创建一个函数执行上下文环境，跟全局上下文差不多，不过 函数执行上下文中会多出this arguments和函数的参数。</p> <h4 id="_2-执行阶段"><a href="#_2-执行阶段" aria-hidden="true" class="header-anchor">#</a> 2.执行阶段</h4> <p>执行变量赋值、代码执行</p> <h4 id="_3-回收阶段"><a href="#_3-回收阶段" aria-hidden="true" class="header-anchor">#</a> 3.回收阶段</h4> <p>执行上下文出栈等待虚拟机回收执行上下文</p> <h3 id="三、变量提升和this指向的细节"><a href="#三、变量提升和this指向的细节" aria-hidden="true" class="header-anchor">#</a> 三、变量提升和this指向的细节</h3> <h4 id="_1-变量声明提升"><a href="#_1-变量声明提升" aria-hidden="true" class="header-anchor">#</a> 1.变量声明提升</h4> <p>大部分编程语言都是先声明变量再使用，但在JS中，事情有些不一样：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>console.log(a)// undefined
+var a = 10
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br></div></div><p>上述代码正常输出<code>undefined</code>而不是报错<code>Uncaught ReferenceError: a is not defined</code>,这是因为声明提升（hoisting），相当于如下代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var a; //声明 默认值是undefined “准备工作”
+console.log(a);
+a=10; //赋值
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br></div></div><h4 id="_2-函数声明提升"><a href="#_2-函数声明提升" aria-hidden="true" class="header-anchor">#</a> 2.函数声明提升</h4> <p>我们都知道，创建一个函数的方法有两种，一种是通过函数声明<code>function foo(){}</code>
+另一种是通过函数表达式<code>var foo = function(){}</code> ,那这两种在函数提升有什么区别呢？</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>console.log(f1) // function f1(){}
+function f1() {} // 函数声明
+console.log(f2) // undefined
+var f2 = function() {} // 函数表达式
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>接下来我们通过一个例子来说明这个问题：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function test() {
+    foo(); // Uncaught TypeError &quot;foo is not a function&quot;
+    bar(); // &quot;this will run!&quot;
+    var foo = function () { // function expression assigned to local variable 'foo'
+        alert(&quot;this won't run!&quot;);
+    }
+    function bar() { // function declaration, given the name 'bar'
+        alert(&quot;this will run!&quot;);
+    }
+}
+test();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>在上面的例子中，foo()调用的时候报错了，而bar能够正常调用。</p> <p>我们前面说过变量和函数都会上升，遇到函数表达式 <code>var foo = function(){}</code>时，首先会将<code>var foo</code>上升到函数体顶部，然而此时的foo的值为undefined,所以执行<code>foo()</code>报错。</p> <p>而对于函数<code>bar()</code>, 则是提升了整个函数，所以<code>bar()</code>才能够顺利执行。</p> <p>有个细节必须注意：<strong>当遇到函数和变量同名且都会被提升的情况，函数声明优先级比较高，因此变量声明会被函数声明所覆盖，但是可以重新赋值。</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>alert(a);//输出：function a(){ alert('我是函数') }
+function a(){ alert('我是函数') }//
+var a = '我是变量';
+alert(a);   //输出：'我是变量'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br></div></div><p>function声明的优先级比var声明高，也就意味着当两个同名变量同时被function和var声明时，function声明会覆盖var声明</p> <p>这代码等效于：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function a(){alert('我是函数')} 
+var a;    //hoisting
+alert(a);    //输出：function a(){ alert('我是函数') }
+a = '我是变量';//赋值
+alert(a);   //输出：'我是变量'
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><p>最后我们看个复杂点的例子：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function test(arg){
+    // 1. 形参 arg 是 &quot;hi&quot;
+    // 2. 因为函数声明比变量声明优先级高，所以此时 arg 是 function
+    console.log(arg);  
+    var arg = 'hello'; // 3.var arg 变量声明被忽略， arg = 'hello'被执行
+    function arg(){
+    console.log('hello world') 
+    }
+    console.log(arg);  
+}
+test('hi');
+/* 输出：
+function arg(){
+    console.log('hello world') 
+    }
+hello 
+*/
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br></div></div><p>这是因为当函数执行的时候,首先会形成一个新的私有的作用域，然后依次按照如下的步骤执行：</p> <ul><li>如果有形参，先给形参赋值</li> <li>进行私有作用域中的预解释，函数声明优先级比变量声明高，最后后者会被前者所覆盖，<strong>但是可以重新赋值</strong></li> <li>私有作用域中的代码从上到下执行</li></ul> <h4 id="_3-确定this的指向"><a href="#_3-确定this的指向" aria-hidden="true" class="header-anchor">#</a> 3.确定this的指向</h4> <p>先搞明白一个很重要的概念 —— <strong>this的值是在执行的时候才能确认，定义的时候不能确认！</strong> 为什么呢 —— 因为this是执行上下文环境的一部分，而执行上下文需要在代码执行之前确定，而不是定义的时候。看如下例子：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>// 情况1
+function foo() {
+  console.log(this.a) //1
+}
+var a = 1
+foo()
+
+// 情况2
+function fn(){
+  console.log(this);
+}
+var obj={fn:fn};
+obj.fn(); //this-&gt;obj
+
+// 情况3
+function CreateJsPerson(name,age){
+//this是当前类的一个实例p1
+this.name=name; //=&gt;p1.name=name
+this.age=age; //=&gt;p1.age=age
+}
+var p1=new CreateJsPerson(&quot;尹华芝&quot;,48);
+
+// 情况4
+function add(c, d){
+  return this.a + this.b + c + d;
+}
+var o = {a:1, b:3};
+add.call(o, 5, 7); // 1 + 3 + 5 + 7 = 16
+add.apply(o, [10, 20]); // 1 + 3 + 10 + 20 = 34
+
+// 情况5
+&lt;button id=&quot;btn1&quot;&gt;箭头函数this&lt;/button&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;   
+    let btn1 = document.getElementById('btn1');
+    let obj = {
+        name: 'kobe',
+        age: 39,
+        getName: function () {
+            btn1.onclick = () =&gt; {
+                console.log(this);//obj
+            };
+        }
+    };
+    obj.getName();
+&lt;/script&gt;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br><span class="line-number">17</span><br><span class="line-number">18</span><br><span class="line-number">19</span><br><span class="line-number">20</span><br><span class="line-number">21</span><br><span class="line-number">22</span><br><span class="line-number">23</span><br><span class="line-number">24</span><br><span class="line-number">25</span><br><span class="line-number">26</span><br><span class="line-number">27</span><br><span class="line-number">28</span><br><span class="line-number">29</span><br><span class="line-number">30</span><br><span class="line-number">31</span><br><span class="line-number">32</span><br><span class="line-number">33</span><br><span class="line-number">34</span><br><span class="line-number">35</span><br><span class="line-number">36</span><br><span class="line-number">37</span><br><span class="line-number">38</span><br><span class="line-number">39</span><br><span class="line-number">40</span><br><span class="line-number">41</span><br><span class="line-number">42</span><br><span class="line-number">43</span><br><span class="line-number">44</span><br><span class="line-number">45</span><br></div></div><p>接下来我们逐一解释上面几种情况</p> <ul><li>对于直接调用 foo 来说，不管 foo 函数被放在了什么地方，this 一定是 window</li> <li>对于 obj.foo() 来说，我们只需要记住，谁调用了函数，谁就是 this，所以在这个场景下 foo 函数中的 this 就是 obj 对象</li> <li>在构造函数模式中，类中(函数体中)出现的this.xxx=xxx中的this是当前类的一个实例</li> <li>call、apply和bind：this 是第一个参数</li> <li>箭头函数this指向:箭头函数没有自己的this，看其外层的是否有函数，如果有，外层函数的this就是内部箭头函数的this，如果没有，则this是window。</li></ul> <p><img src="https://segmentfault.com/img/remote/1460000018550121?w=602&amp;h=426" alt="img"></p> <h4 id="四、执行上下文栈（execution-context-stack）"><a href="#四、执行上下文栈（execution-context-stack）" aria-hidden="true" class="header-anchor">#</a> 四、执行上下文栈（Execution Context Stack）</h4> <p>函数多了，就有多个函数执行上下文，每次调用函数创建一个新的执行上下文，那如何管理创建的那么多执行上下文呢？</p> <p>JavaScript 引擎创建了执行上下文栈来管理执行上下文。<strong>可以把执行上下文栈认为是一个存储函数调用的栈结构，遵循先进后出的原则</strong>。</p> <p><img src="https://segmentfault.com/img/remote/1460000018550122?w=486&amp;h=238" alt="img"></p> <p>从上面的流程图，我们需要记住几个关键点：</p> <ul><li>JavaScript执行在单线程上，所有的代码都是排队执行。</li> <li>一开始浏览器执行全局的代码时，首先创建全局的执行上下文，压入执行栈的顶部。</li> <li>每当进入一个函数的执行就会创建函数的执行上下文，并且把它压入执行栈的顶部。当前函数执行完成后，当前函数的执行上下文出栈，并等待垃圾回收。</li> <li>浏览器的JS执行引擎总是访问栈顶的执行上下文。</li> <li>全局上下文只有唯一的一个，它在浏览器关闭时出栈。</li></ul> <p>我们再来看个例子：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var color = 'blue';
+function changeColor() {
+    var anotherColor = 'red';
+    function swapColors() {
+        var tempColor = anotherColor;
+        anotherColor = color;
+        color = tempColor;
+    }
+    swapColors();
+}
+changeColor();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>上述代码运行按照如下步骤：</p> <ul><li>当上述代码在浏览器中加载时，JavaScript 引擎会创建一个全局执行上下文并且将它推入当前的执行栈</li> <li>调用 changeColor函数时，此时changeColor函数内部代码还未执行，js执行引擎立即创建一个changeColor的执行上下文（简称EC），然后把这执行上下文压入到执行栈（简称ECStack）中。</li> <li>执行changeColor函数过程中，调用swapColors函数，同样地，swapColors函数执行之前也创建了一个swapColors的执行上下文，并压入到执行栈中。</li> <li>swapColors函数执行完成，swapColors函数的执行上下文出栈，并且被销毁。</li> <li>changeColor函数执行完成，changeColor函数的执行上下文出栈，并且被销毁。</li></ul> <p><img src="https://segmentfault.com/img/remote/1460000018550123?w=1180&amp;h=320" alt="img"></p> <h2 id="_4-this的原理以及几种不同使用场景的取值"><a href="#_4-this的原理以及几种不同使用场景的取值" aria-hidden="true" class="header-anchor">#</a> 4.<code>this</code>的原理以及几种不同使用场景的取值</h2> <h4 id="情况一：全局-调用普通函数"><a href="#情况一：全局-调用普通函数" aria-hidden="true" class="header-anchor">#</a> 情况一：全局 &amp; 调用普通函数</h4> <p>在全局环境中，this 永远指向 window。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>console.log(this === window);     //true
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>普通函数在调用时候(注意不是构造函数，前面不加 new)，其中的 this 也是指向 window。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var x = 10;
+function foo(){
+    console.log(this);     //Window
+    console.log(this.x);   //10
+}
+foo();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><h4 id="情况二：构造函数"><a href="#情况二：构造函数" aria-hidden="true" class="header-anchor">#</a> 情况二：构造函数</h4> <p>所谓的构造函数就是由一个函数 new 出来的对象，一般构造函数的函数名首字母大写，例如像 Object，Function，Array 这些都属于构造函数。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function Foo(){
+    this.x = 10;
+    console.log(this);    //Foo {x:10}
+}
+var foo = new Foo();
+console.log(foo.x);      //10
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p>上述代码，如果函数作为构造函数使用，那么其中的 this 就代表它即将 new 出来的对象。</p> <p>但是如果直接调用 Foo 函数，而不是 new Foo()，那就变成情况1，这时候 Foo() 就变成普通函数。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function Foo(){
+    this.x = 10;
+    console.log(this);    //Window
+}
+var foo = Foo();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h4 id="情况三：对象方法"><a href="#情况三：对象方法" aria-hidden="true" class="header-anchor">#</a> 情况三：对象方法</h4> <p>如果函数作为对象的方法时，方法中的 this 指向该对象。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var obj = {
+    x: 10,
+    foo: function () {
+        console.log(this);        //Object
+        console.log(this.x);      //10
+    }
+};
+obj.foo();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>注意：若是在对象方法中定义函数，那么情况就不同了。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var obj = {
+    x: 10,
+    foo: function () {
+        function f(){
+            console.log(this);      //Window
+            console.log(this.x);    //undefined
+        }
+        f();
+    }
+}
+obj.foo();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>可以这么理解：函数 f 虽然是在 obj.foo 内部定义的，但它仍然属于一个普通函数，this 仍指向 window。</p> <p>在这里，如果想要调用上层作用域中的变量 obj.x，可以使用 self 缓存外部 this 变量。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var obj = {
+    x: 10,
+    foo: function () {
+        var self = this;
+        function f(){
+            console.log(self);      //{x: 10}
+            console.log(self.x);    //10
+        }
+        f();
+    }
+}
+obj.foo();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br></div></div><p>如果 foo 函数不作为对象方法被调用：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var obj = {
+    x: 10,
+    foo: function () {
+        console.log(this);       //Window
+        console.log(this.x);     //undefined
+    }
+};
+var fn = obj.foo;
+fn();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>obj.foo 被赋值给一个全局变量，并没有作为 obj 的一个属性被调用，那么此时 this 的值是 window。</p> <h4 id="情况四：构造函数-prototype-属性"><a href="#情况四：构造函数-prototype-属性" aria-hidden="true" class="header-anchor">#</a> 情况四：构造函数 prototype 属性</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>function Foo(){
+    this.x = 10;
+}
+Foo.prototype.getX = function () {
+    console.log(this);        //Foo {x: 10, getX: function}
+    console.log(this.x);      //10
+}
+var foo = new Foo();
+foo.getX();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p>在 Foo.prototype.getX 函数中，this 指向的 foo 对象。不仅仅如此，即便是在整个原型链中，this 代表的也是当前对象的值。</p> <h4 id="情况五：函数用-call、apply或者-bind-调用。"><a href="#情况五：函数用-call、apply或者-bind-调用。" aria-hidden="true" class="header-anchor">#</a> 情况五：函数用 call、apply或者 bind 调用。</h4> <div class="language- line-numbers-mode"><pre class="language-text"><code>var obj = {
+    x: 10
+}
+function foo(){
+    console.log(this);     //{x: 10}
+    console.log(this.x);   //10
+}
+foo.call(obj);
+foo.apply(obj);
+foo.bind(obj)();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div></div><p>当一个函数被 call、apply 或者 bind 调用时，this 的值就取传入的对象的值。</p> <p>当一个函数被 call、apply 或者 bind 调用时，this 的值就取传入的对象的值。</p> <h4 id="情况六：dom-event-this"><a href="#情况六：dom-event-this" aria-hidden="true" class="header-anchor">#</a> 情况六：DOM event this</h4> <p>在一个 HTML DOM 事件处理程序里，this 始终指向这个处理程序所绑定的 HTML DOM 节点：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function Listener(){   
+    document.getElementById('foo').addEventListener('click', this.handleClick);     //这里的 this 指向 Listener 这个对象。不是强调的是这里的 this
+}
+Listener.prototype.handleClick = function (event) {
+    console.log(this);    //&lt;div id=&quot;foo&quot;&gt;&lt;/div&gt;
+}
+var listener = new Listener();
+document.getElementById('foo').click();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>这个很好理解，就相当于是给函数传参，使 handleClick 运行时上下文改变了，相当于下面这样的代码：</p> <p>这个很好理解，就相当于是给函数传参，使 handleClick 运行时上下文改变了，相当于下面这样的代码：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var obj = {
+    x: 10,
+    fn: function() {
+        console.log(this);         //Window
+        console.log(this.x);       //undefined
+    }
+};
+function foo(fn) {
+    fn();
+} 
+foo(obj.fn);
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br></div></div><p>你也可以用通过 bind 切换上下文:</p> <p>你也可以用通过 bind 切换上下文:</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function  Listener(){
+    document.getElementById('foo').addEventListener('click',this.handleClick.bind(this));      
+}
+Listener.prototype.handleClick = function (event) {
+    console.log(this);    //Listener {}
+}
+var listener = new Listener();
+document.getElementById('foo').click();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br></div></div><p>前六种情况其实可以总结为： this 指向调用该方法的对象。</p> <p>前六种情况其实可以总结为： this 指向调用该方法的对象。</p> <h4 id="情况七：箭头函数中的-this"><a href="#情况七：箭头函数中的-this" aria-hidden="true" class="header-anchor">#</a> 情况七：箭头函数中的 this</h4> <p>当使用箭头函数的时候，情况就有所不同了：箭头函数内部的 this 是词法作用域，由上下文确定。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var obj = {
+    x: 10,
+    foo: function() {
+        var fn = () =&gt; {
+            return () =&gt; {
+                return () =&gt; {
+                    console.log(this);      //Object {x: 10}
+                    console.log(this.x);    //10
+                }
+            }
+        }
+        fn()()();
+    }
+}
+obj.foo();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br></div></div><p>现在，箭头函数完全修复了 this 的指向，this 总是指向词法作用域，也就是外层调用者 obj。</p> <p>现在，箭头函数完全修复了 this 的指向，this 总是指向词法作用域，也就是外层调用者 obj。</p> <p>如果使用箭头函数，以前的这种 hack 写法：</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var self = this;
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>就不再需要了。</p> <p>就不再需要了。</p> <div class="language- line-numbers-mode"><pre class="language-text"><code>var obj = {
+    x: 10,
+    foo: function() {
+        var fn = () =&gt; {
+            return () =&gt; {
+                return () =&gt; {
+                    console.log(this);    // Object {x: 10}
+                    console.log(this.x);  //10
+                }
+            }
+        }
+        fn.bind({x: 14})()()();
+        fn.call({x: 14})()();
+    }
+}
+obj.foo();
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br><span class="line-number">15</span><br><span class="line-number">16</span><br></div></div><p>由于 this 在箭头函数中已经按照词法作用域绑定了，所以，用 call()或者 apply()调用箭头函数时，无法对 this 进行绑定，即传入的第一个参数被忽略。</p> <h2 id="_5-闭包的实现原理和作用，可以列举几个开发中闭包的实际应用"><a href="#_5-闭包的实现原理和作用，可以列举几个开发中闭包的实际应用" aria-hidden="true" class="header-anchor">#</a> 5.闭包的实现原理和作用，可以列举几个开发中闭包的实际应用</h2> <p>闭包（closure）是javascript的一大难点，也是它的特色。很多高级应用都要依靠闭包来实现。</p> <h4 id="_1、变量作用域"><a href="#_1、变量作用域" aria-hidden="true" class="header-anchor">#</a> 1、变量作用域</h4> <p>要理解闭包，首先要理解javascript的特殊的变量作用域。</p> <p>变量的作用域无非就两种：全局变量和局部变量。</p> <p>javascript语言的特别之处就在于：函数内部可以直接读取全局变量，但是在函数外部无法读取函数内部的局部变量。</p> <p>注意点：在函数内部声明变量的时候，一定要使用var命令。如果不用的话，你实际上声明的是一个全局变量！</p> <h4 id="_2、如何从外部读取函数内部的局部变量？"><a href="#_2、如何从外部读取函数内部的局部变量？" aria-hidden="true" class="header-anchor">#</a> 2、如何从外部读取函数内部的局部变量？</h4> <p>出于种种原因，我们有时候需要获取到函数内部的局部变量。但是，上面已经说过了，正常情况下，这是办不到的！只有通过变通的方法才能实现。</p> <p>那就是在函数内部，再定义一个函数。</p> <p>function f1(){</p> <p>var n=999;</p> <p>function f2(){
+　　　　　　alert(n); // 999
+　　　　}</p> <p>}</p> <p>在上面的代码中，函数f2就被包括在函数f1内部，这时f1内部的所有局部变量，对f2都是可见的。但是反过来就不行，f2内部的局部变量，对f1就是不可见的。</p> <p>这就是Javascript语言特有的&quot;链式作用域&quot;结构（chain scope），</p> <p>子对象会一级一级地向上寻找所有父对象的变量。所以，父对象的所有变量，对子对象都是可见的，反之则不成立。</p> <p>既然f2可以读取f1中的局部变量，那么只要把f2作为返回值，我们不就可以在f1外部读取它的内部变量了吗！</p> <h4 id="_3、闭包的概念"><a href="#_3、闭包的概念" aria-hidden="true" class="header-anchor">#</a> 3、闭包的概念</h4> <p>上面代码中的f2函数，就是闭包。</p> <p>各种专业文献的闭包定义都非常抽象，我的理解是: 闭包就是能够读取其他函数内部变量的函数。</p> <p>由于在javascript中，只有函数内部的子函数才能读取局部变量，所以说，闭包可以简单理解成“定义在一个函数内部的函数“。</p> <p>所以，在本质上，闭包是将函数内部和函数外部连接起来的桥梁。</p> <h4 id="_4、闭包的用途"><a href="#_4、闭包的用途" aria-hidden="true" class="header-anchor">#</a> 4、闭包的用途</h4> <p>闭包可以用在许多地方。它的最大用处有两个，一个是前面提到的可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中，不会在f1调用后被自动清除。</p> <p>为什么会这样呢？原因就在于f1是f2的父函数，而f2被赋给了一个全局变量，这导致f2始终在内存中，而f2的存在依赖于f1，因此f1也始终在内存中，不会在调用结束后，被垃圾回收机制（garbage collection）回收。</p> <p>这段代码中另一个值得注意的地方，就是&quot;nAdd=function(){n+=1}&quot;这一行，首先在nAdd前面没有使用var关键字，因此nAdd是一个全局变量，而不是局部变量。其次，nAdd的值是一个匿名函数（anonymous function），而这个匿名函数本身也是一个闭包，所以nAdd相当于是一个setter，可以在函数外部对函数内部的局部变量进行操作。</p> <h4 id="_5、闭包的优点"><a href="#_5、闭包的优点" aria-hidden="true" class="header-anchor">#</a> 5、闭包的优点</h4> <p>（1）逻辑连续，当闭包作为另一个函数调用参数时，避免脱离当前逻辑而单独编写额外逻辑。</p> <p>（2）方便调用上下文的局部变量。</p> <p>（3）加强封装性，是第2点的延伸，可以达到对变量的保护作用。</p> <h4 id="_6、使用闭包的注意点（缺点）"><a href="#_6、使用闭包的注意点（缺点）" aria-hidden="true" class="header-anchor">#</a> 6、使用闭包的注意点（缺点）</h4> <p>（1）由于闭包会使得函数中的变量都被保存在内存中，内存消耗很大，所以不能滥用闭包，否则会造成网页的性能问题，在IE中可能导致内存泄露。解决方法是，在退出函数之前，将不使用的局部变量全部删除。</p> <p>（2）闭包会在父函数外部，改变父函数内部变量的值。所以，如果你把父函数当作对象（object）使用，把闭包当作它的公用方法（Public Method），把内部变量当作它的私有属性（private value），这时一定要小心，不要随便改变父函数内部变量的值。</p> <h4 id="_7、闭包的特性"><a href="#_7、闭包的特性" aria-hidden="true" class="header-anchor">#</a> 7、闭包的特性</h4> <p>（1）作为函数变量的一个引用。当函数返回时，其处于激活状态。</p> <p>（2）闭包就是当一个函数返回时，并没有释放资源的栈区。</p> <h4 id="_8、闭包对页面的影响"><a href="#_8、闭包对页面的影响" aria-hidden="true" class="header-anchor">#</a> 8、闭包对页面的影响</h4> <p>通过使用闭包，我们可以做很多事情。比如模拟面向对象的代码风格；更优雅、更简洁的表达出代码；在某些方面提升代码的执行效率。</p> <h4 id="_9、闭包的工作原理"><a href="#_9、闭包的工作原理" aria-hidden="true" class="header-anchor">#</a> 9、闭包的工作原理</h4> <p>因为闭包只有在被调用时才执行操作，所以它可以被用来定义控制结构。多个函数可以使用同一个环境，这使得他们可以通过改变那个环境相互交流。</p> <h4 id="_10、闭包例子"><a href="#_10、闭包例子" aria-hidden="true" class="header-anchor">#</a> 10、闭包例子</h4> <h5 id="应用场景一：settimeout"><a href="#应用场景一：settimeout" aria-hidden="true" class="header-anchor">#</a> 应用场景一：setTimeout</h5> <p>原生的setTimeout有一个缺陷，你传递的第一个函数不能带参数。即</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token function">func</span><span class="token punctuation">(</span>parma<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br></div></div><p>这样的语句是不生效的（不过在不同浏览器中有不同的错误，总之都无法达到预期效果）</p> <p>这时，我们就可以用闭包来实现这个效果了。</p> <div class="language-js line-numbers-mode"><pre class="language-js"><code><span class="token keyword">function</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token parameter">param</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">alert</span><span class="token punctuation">(</span>param<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> f <span class="token operator">=</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span>f<span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br></div></div><h2 id="_6-理解堆栈溢出和内存泄漏的原理，如何防止"><a href="#_6-理解堆栈溢出和内存泄漏的原理，如何防止" aria-hidden="true" class="header-anchor">#</a> 6.理解堆栈溢出和内存泄漏的原理，如何防止</h2> <h4 id="_1，内存泄漏（memory-leak）："><a href="#_1，内存泄漏（memory-leak）：" aria-hidden="true" class="header-anchor">#</a> 1，内存泄漏（memory leak）：</h4> <p>是指程序在申请内存后，无法释放已申请的内存空间，导致系统无法及时回收内存并且分配给其他进程使用。通常少次数的内存无法及时回收并不会到程序造成什么影响，但是如果在内存本身就比较少获取多次导致内存无法正常回收时，就会导致内存不够用，最终导致内存溢出。</p> <h4 id="_2、内存溢出-（out-of-memory）："><a href="#_2、内存溢出-（out-of-memory）：" aria-hidden="true" class="header-anchor">#</a> 2、内存溢出 （out of memory）：</h4> <p>指程序申请内存时，没有足够的内存供申请者使用，导致数据无法正常存储到内存中。也就是说给你个int类型的存储数据大小的空间，但是却存储一个long类型的数据，这样就会导致内存溢出。</p> <h4 id="内存泄漏：以发生的方式来分类，内存泄漏可以分为4类："><a href="#内存泄漏：以发生的方式来分类，内存泄漏可以分为4类：" aria-hidden="true" class="header-anchor">#</a> 内存泄漏：以发生的方式来分类，内存泄漏可以分为4类：</h4> <p>​       1.常发性内存泄漏。发生内存泄漏的代码会被多次执行到，每次执行都会导致一块内存泄漏。
+​       2.偶发性内存泄漏。发生内存泄漏只有在某些特定环境或操作过程下才会发生。常发性和偶发性是相对的。对于特定的环境，偶发性也许变成了常发性的。所以测试环境和测试方法对检测内存泄漏至关重要。
+​       3.一次性内存泄漏。发生内存泄漏的代码只会执行一次，由于算法上的缺陷，导致总会有一块仅且一块内存发生泄漏。比如在类的构造函数中分配内存，在析构函数中却没有释放该内存，所以内存泄漏只会发生一次。
+​       4.隐式内存泄漏。程序在运行中不停的分配内存，但是知道结束时在释放内存。严格的说这里并没有发生内存泄漏，因为最终释放了所有申请的内存。但对于一个服务器程序，需要运行几天，几周甚至几个月，不及时释放内存也可能导致耗尽系统的所有内存。所以我们称这类内存泄漏为隐式内存泄漏。</p> <p>内存溢出的原因以及解决办法：
+1.内存中加载的数据量过于庞大，如一次从数据库中取出过多数据；
+2.集合类中有对对象的引用，使用后未清空，是的JVM不能回收；
+3.代码中存在死循环或者循环产生过多重复的对象实体；
+4.使用第三方软件中的BUG；
+5.启动参数内存值设定的过小
+内存溢出的解决方案：
+1.修改JVM启动参数，直接增加内存。（-Xms,-Xms参数一定不要忘记加）
+2.检查错误日志，查看“OutOfMemory”错误前是否有其他异常或错误。
+3.对代码进行走查和分析，找出可能发生内存溢出的位置。
+重点排查以下几点：
+1）检查对数据库查询中，是否有一次获得全部数据的查询。一般来说，如果一次取十万条记录到内存，就可能引起内存溢出。这个问题比较隐蔽，在上线前，数据库中数据较少，不容易出问题，上线后，数据库中数据多了，一次查询就有可能引起内存溢出。对数据库查询尽量采用分页查询。
+2）检查代码是否有死循环或递归调用。
+3）检查是否有大循环重复产生新对象实体。
+4）检查List、Map等集合对象是否有使用后，未清除的问题。List、Map等集合对象会始终存有对对象的引用，使得这些对象不能被GC回收。
+4.使用内存查看工具动态查看内存使用情况。</p> <h2 id="_7-如何处理循环的异步操作"><a href="#_7-如何处理循环的异步操作" aria-hidden="true" class="header-anchor">#</a> 7.如何处理循环的异步操作</h2> <h3 id="_7-1-如何确保循环的所有异步操作完成之后执行某个其他操作"><a href="#_7-1-如何确保循环的所有异步操作完成之后执行某个其他操作" aria-hidden="true" class="header-anchor">#</a> 7.1 如何确保循环的所有异步操作完成之后执行某个其他操作</h3> <p><strong>方法一：设置一个flag，在每个异步操作中对flag进行检测</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>let flag = 0;
+for(let i = 0; i &lt; len; i++) {
+  flag++;
+  Database.save_method().exec().then((data) =&gt; {
+      if(flag === len) {
+            // your code
+      }
+  })
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><p><strong>方法二：将所有的循环放在一个promise中，使用then处理</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code> new Promise(function(resolve){
+      resolve()
+ }).then(()=&gt; {
+     for(let i = 0; i &lt; len; i++) {
+           Database.save_method().exec()
+     }
+}).then(() =&gt; {
+    // your code
+})
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br></div></div><h3 id="_7-2-循环中的下一步操作依赖于前一步的操作，如何解决"><a href="#_7-2-循环中的下一步操作依赖于前一步的操作，如何解决" aria-hidden="true" class="header-anchor">#</a> 7.2 循环中的下一步操作依赖于前一步的操作，如何解决</h3> <p><strong>方法一：使用递归，在异步操作完成之后调用下一次异步操作</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>function loop(i){
+  i++;
+  Database.save_method().exec().then(() =&gt; {
+      loop(i)
+    })
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br></div></div><p><strong>方法二：使用async和await</strong></p> <div class="language- line-numbers-mode"><pre class="language-text"><code>async function loop() {
+    for(let i = 0; i &lt; len; i++) {
+         await Database.save_method().exec();
+    }
+}
+</code></pre> <div class="line-numbers-wrapper"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br></div></div><h2 id="_8-理解模块化解决的实际问题，可列举几个模块化方案并理解其中原理"><a href="#_8-理解模块化解决的实际问题，可列举几个模块化方案并理解其中原理" aria-hidden="true" class="header-anchor">#</a> 8.理解模块化解决的实际问题，可列举几个模块化方案并理解其中原理</h2> <p><a href="https://blog.csdn.net/zl13015214442/article/details/96109681" target="_blank" rel="noopener noreferrer">模块化<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated: </span> <span class="time">3/3/2020, 9:23:15 PM</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+        ←
+        <a href="/Prebook/JavaScript/原型和原型链.html" class="prev">
+          原型和原型链
+        </a></span> <span class="next"><a href="/Prebook/JavaScript/执行机制.html">
+          执行机制
+        </a>
+        →
+      </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/Prebook/assets/js/app.9e47b049.js" defer></script><script src="/Prebook/assets/js/2.7ad09ebd.js" defer></script><script src="/Prebook/assets/js/20.22e7e3a8.js" defer></script>
+  </body>
+</html>
