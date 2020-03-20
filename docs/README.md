@@ -1,7 +1,7 @@
 ---
 home: true
 lang: zh-CN
-heroText: cjhyy的前端总结
+heroText: cjhyy的个人知识梳理
 heroImage: /logo.jpg
 actionText: 开始
 actionLink: /main/

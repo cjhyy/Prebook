@@ -14,7 +14,7 @@ module.exports = {
         // 2.设置true，开启最后更新时间
         lastUpdated: true,
         nav: [
-            { text: '前端', link: '/' },
+            { text: '面试', link: 'https://cjhyy.github.io/InterView/'},
             {
                 text: '算法',
                 items: [
@@ -23,28 +23,28 @@ module.exports = {
                 ]
             },
 
-            {
-                text: '学习笔记',
-                items: [
-                    { text: '数学', link: 'https://github.com/cjhyy' },
-                    {
-                        text: '计算机',
-                        link: 'https://github.com/cjhyy'
-                    },
-                    {
-                        text: '英语',
-                        link: 'https://github.com/cjhyy'
-                    },
-                    {
-                        text: '日语',
-                        link: 'https://github.com/cjhyy'
-                    },
-                    {
-                        text: '其他',
-                        link: 'https://github.com/cjhyy'
-                    },
-                ]
-            },
+            // {
+            //     text: '学习笔记',
+            //     items: [
+            //         { text: '数学', link: 'https://github.com/cjhyy' },
+            //         {
+            //             text: '计算机',
+            //             link: 'https://github.com/cjhyy'
+            //         },
+            //         {
+            //             text: '英语',
+            //             link: 'https://github.com/cjhyy'
+            //         },
+            //         {
+            //             text: '日语',
+            //             link: 'https://github.com/cjhyy'
+            //         },
+            //         {
+            //             text: '其他',
+            //             link: 'https://github.com/cjhyy'
+            //         },
+            //     ]
+            // },
             { text: 'Github', link: 'https://github.com/cjhyy' },
         ],
         sidebar: [{
@@ -96,9 +96,32 @@ module.exports = {
                     ]
                                 },
             {
-                title: 'TypeScript',
+                title: '框架和类库',
                 children: [
-                '/TypeScript/'
+                '/libary/TypeScript',
+                '/libary/React',
+                '/libary/Vue',
+                '/libary/多端开发',
+                '/libary/数据流管理',
+                '/libary/实用库',
+                '/libary/开发和调试'                
+                ]
+            },
+            {
+                title: '前端工程',
+                children: [
+                '/Engineering/项目构建',
+                '/Engineering/nginx',
+                '/Engineering/开发提速',
+                '/Engineering/版本控制',
+                '/Engineering/持续集成'             
+                ]
+            },
+            {
+                title: '项目和业务',
+                children:[
+                '/optimization/前端安全',
+                '/optimization/性能优化'
                 ]
             }
         ]
