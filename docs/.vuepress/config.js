@@ -96,44 +96,11 @@ module.exports = {
                     ]
                                 },
             {
-                title: '微信小程序',
-                children: [
-                    // '/wechat/',
-                    '/wechat/小程序checkbox样式的修改',
-                    '/wechat/小程序input原有样式改进',
-                    '/wechat/小程序picker组件',
-                    '/wechat/小程序setData',
-                    '/wechat/小程序中checkbox问题',
-                    '/wechat/小程序中多个不同时间倒计时实现',
-                    '/wechat/小程序中的页面跳转',
-                    '/wechat/小程序中的页面间数据传递',
-                    '/wechat/小程序列表排序',
-                    '/wechat/小程序回到顶部',
-                    '/wechat/小程序微信自带卡劵功能',
-                    '/wechat/小程序通知滚动小提示',
-                    '/wechat/小程序点击样式切换',
-                ]
-            },
-            {
                 title: 'TypeScript',
                 children: [
                 '/TypeScript/'
                 ]
-            },
-            {
-                title: 'React',
-                children: [
-                '/React/',
-                '/React/react事件绑定',
-                '/React/react生命周期'
-                ]
-            },
-            {
-                title: 'Vue',
-                children: [
-                '/Vue/'
-                ]
-            },
+            }
         ]
 
 
